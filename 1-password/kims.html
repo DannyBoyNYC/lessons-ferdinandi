@@ -97,7 +97,7 @@
 </head>
 <body>
 
-	<h1>Toggle Password Visibility</h1>
+  <h1>Kim Toggle Password Visibility</h1>
 
 	<h2>Log In</h2>
 	<form>
@@ -108,12 +108,12 @@
 
 		<div>
 			<label for="password">Password</label>
-			<input type="password" name="password" id="password">
+			<input type="password" name="password" id="password" class="password">
 		</div>
 
 		<div>
 			<label class="no-bold" for="show-passwords">
-				<input type="checkbox" name="show-passwords" id="show-password">
+				<input type="checkbox" name="show-passwords" id="show-passwords" class="toggle-password">
 				Show password
 			</label>
 		</div>
@@ -126,17 +126,17 @@
 	<form>
 		<div>
 			<label for="current-pw">Current Password</label>
-			<input type="password" name="current-pw" id="current-pw">
+			<input type="password" name="current-pw" id="current-pw" class="password">
 		</div>
 
 		<div>
 			<label for="new-pw">New Password</label>
-			<input type="password" name="new-pw" id="new-pw">
+			<input type="password" name="new-pw" id="new-pw" class="password">
 		</div>
 
 		<div>
-			<label class="no-bold" for="show-password">
-				<input type="checkbox" name="show-password" id="show-passwords">
+			<label class="no-bold" for="show-password" class="password">
+				<input type="checkbox" name="show-password" id="show-password" class="toggle-password">
 				Show passwords
 			</label>
 		</div>
@@ -146,33 +146,42 @@
 
 	<script>
 
-		document.addEventListener('change', changeHandlers, true)
+;(function(window, document, undefined) {
+	'use strict';
 
-		function changeHandlers(e){
-			// show existing password
-			if(e.target.id === 'show-password'){
-				var pwInput = document.querySelector('#password');
-				if(e.target.checked){
-					pwInput.setAttribute('type', 'text');
-				} 
-				else {
-					pwInput.setAttribute('type', 'password')
-				}
-			}
-			// show update passwords
-			if(e.target.id === 'show-passwords'){
-				var pwCurrent = document.querySelector('#current-pw');
-				var pwNew= document.querySelector('#new-pw');
-				if(e.target.checked){
-					pwCurrent.setAttribute('type', 'text');
-					pwNew.setAttribute('type', 'text');
-				} 
-				else {
-					pwCurrent.setAttribute('type', 'password');
-					pwNew.setAttribute('type', 'password');
-				}
-			}
+	// Listen to change events
+	document.addEventListener('change', eventHandler, false);
+
+	function eventHandler(e) {
+		// Bail if the target element is not a toggle visibility checkbox
+		if (!e.target.classList.contains('toggle-password')) return;
+		
+		// Get the current state of password fields
+		var isToggled = e.target.checked;
+
+		// Get the parent form of the target element
+		var form = e.target.closest('form');
+
+		// Get all password fields in the parent form
+		var passwordFields = Array.from(form.querySelectorAll('.password'));
+		if (passwordFields.length < 1) return;
+		
+		// Check if password fields should be shown or hidden
+		if (isToggled) {
+			
+			// Show password
+			passwordFields.forEach(function (field) {
+				field.setAttribute('type', 'text');
+			});
+		} else {
+
+			// Hide password
+			passwordFields.forEach(function (field) {
+				field.setAttribute('type', 'password');
+			});
 		}
+	}
+})(window, document);
 
 	</script>
 
