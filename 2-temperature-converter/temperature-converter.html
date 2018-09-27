@@ -103,36 +103,53 @@
 </head>
 <body>
 	
-	<h1>Farenheit/Celcius Calculator</h1>
+	<h1>DannyBoyNYC Farenheit/Celcius Calculator</h1>
 	
 	<div class="row">
 		<div class="grid grid-content">
-			<input type="number" name="farenheit" id="farenheit" value="32">
+			<input type="number" name="farenheit" id="farenheit" value="32" class="conv">
 			<label for="farenheit">Farenheit</label>
 		</div>
 		<div class="grid grid-equals padding text-center"><span class="font-big">=</span></div>
 		<div class="grid grid-content">
-			<input type="number" name="celcius" id="celcius" value="0">
+			<input type="number" name="celcius" id="celcius" value="0" class="conv">
 			<label for="celcius">Celcius</label>
 		</div>
 	</div>
 	
 	<script>
-		document.addEventListener('change', changeHandlers, false);
-		
-		function changeHandlers(){
-			if(event.target.id === 'farenheit'){
-				var tempF = document.getElementById('farenheit').value;
-				var celcius = Math.floor((tempF - 32) * 5/9);
-				document.getElementById('celcius').value = celcius;
+			
+			document.addEventListener('input', changeHandlers, false);
+			
+			function changeHandlers(e){
+				
+				if(!e.target.classList.contains('conv')) return;
+				
+				var celcius = document.getElementById('celcius');
+				var farenheit = document.getElementById('farenheit');
+				
+				var el = e.target;
+				var temperature = el.value;
+				
+				if(el.id === 'farenheit'){
+					var cel = farToCelcius(temperature)
+					celcius.value = cel;
+				}
+				else if(el.id === 'celcius') {
+					var far = celToFarenheit(temperature);
+					farenheit.value = far;
+				}
+				
+				function farToCelcius(temperature){
+					var cel = Math.floor((temperature - 32) * 5/9);
+					return cel;
+				}
+				
+				function celToFarenheit(temperature){
+					var far = Math.floor((temperature * 9/5) + 32);
+					return far;
+				}
 			}
-			if(event.target.id === 'celcius'){
-				var tempC = document.getElementById('celcius').value;
-				var farenheit = Math.floor((tempC * 9/5) + 32);
-				document.getElementById('farenheit').value = farenheit;
-			}
-		}
-		
 		
 	</script>
 	
