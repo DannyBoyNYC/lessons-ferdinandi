@@ -12,20 +12,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   
 	<style type="text/css">
-		/**
-    * Add box sizing to everything
-    * @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
-    */
-		/* line 38, src/sass/components/_normalize.scss */
 		*,
 		*:before,
 		*:after {
 			box-sizing: border-box;
 		}
-    
-		/**
-    * Layout
-    */
 		body {
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 			font-size: 112.5%;
@@ -33,7 +24,14 @@
 			margin-right: auto;
 			max-width: 40em;
 			width: 88%;
-		}
+    }
+    a {
+      color: #007eb6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 	</style>
 </head>
 <body>
@@ -42,56 +40,7 @@
   
 	<div id="app"></div>
   
-  
-	<script>
+	<script src="scripts.js"></script>
     
-    var elem = document.querySelector('#app');
-    // d7d88f32a04d4c6aab4e46735441d0ee
-    // https://api.nytimes.com/svc/topstories/v2/opinion.json?api-key=d7d88f32a04d4c6aab4e46735441d0ee
-    
-    var xhr = new XMLHttpRequest();
-    
-    xhr.onreadystatechange = function () {
-      
-      if (xhr.readyState !== 4) return;
-      
-      // Process our return data
-      if (xhr.status >= 200 && xhr.status < 300) {
-        // This will run when the request is successful
-        var data = (JSON.parse(xhr.responseText));
-      } else {
-        // This will run when it's not
-        console.log('The request failed!');
-      }
-      
-      // This will run either way
-      // All three of these are optional, depending on what you're trying to do
-      console.log(data);
-      processFeed(data)
-    };
-    
-    var getFeed = function(cat){
-      xhr.open('GET', 'https://api.nytimes.com/svc/topstories/v2/'+cat+'.json?api-key=d7d88f32a04d4c6aab4e46735441d0ee');
-      xhr.send();
-    }
-
-    var processFeed = function(data){
-      var article = document.createElement('article');
-      article.className = 'articles';
-      article.textContent = 'Nice work, dude!';
-      var target = document.querySelector('#app');
-      target.prepend(article);
-    }
-
-    // var sanitizeHTML = function (str) {
-    //   var temp = document.createElement('div');
-    //   temp.textContent = str;
-    //   return temp.innerHTML;
-    // };
-    
-    getFeed('opinion')
-
-	</script>
-  
-</body>
-</html>
+  </body>
+  </html>
