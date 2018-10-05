@@ -8,9 +8,10 @@ var nytDocumentation = 'https://developer.nytimes.com/top_stories_v2.json';
 var categories = ['food', 'fashion', 'travel'];
 var limit = 3;
 var topStories = '';
+var storyObj = {};
+var storyArray = [];
 
 var processFeed = function (stories) {
-  // console.log(stories);
   stories.forEach(function (story) {
     // console.log(story);
     var storyEl = document.createElement('div');
@@ -23,10 +24,11 @@ var processFeed = function (stories) {
     <p>${story.abstract}</p>
     `;
     console.log(storyEl);
-    elem.textContent += storyEl;
-    // return story;
+    storyArray.push(storyEl);
+
+    elem.prepend(storyEl); // temporatary - build the array first
   })
-  // console.log(elem.textContent);
+  console.log(storyArray);
 }
 
 var makeRequest = function(url, method) {
@@ -35,13 +37,11 @@ var makeRequest = function(url, method) {
     request.onreadystatechange = function () {
       if (request.readyState !== 4) return;
       if (request.status >= 200 && request.status < 300) {
-        // successful
-        resolve(request);
+        resolve(request); // successful
       } else {
-        // failed
-        reject({
-          status: request.status,
-          statusText: request.statusText
+        reject({ 
+          status: request.status, 
+          statusText: request.statusText // failed
         });
       }
     };
@@ -50,13 +50,12 @@ var makeRequest = function(url, method) {
   });
 }
 
+
 makeRequest('https://api.nytimes.com/svc/topstories/v2/food.json?api-key=' + nytapi)
   .then(function (posts) {
     var data = (JSON.parse(posts.responseText));
     var stories = data.results.slice(0, limit);
-    // console.log(posts); // returns XMLHttpRequest
     processFeed(stories)
-
   })
   .catch(function (error) {
     console.log(error);
