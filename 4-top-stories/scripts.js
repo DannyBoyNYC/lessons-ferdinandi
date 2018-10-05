@@ -6,6 +6,14 @@ var topStories = '';
 
 var xhr = new XMLHttpRequest();
 
+// methods
+
+var sanitizeHTML = function (str) {
+  var temp = document.createElement('div');
+  temp.textContent = str;
+  return temp.innerHTML;
+};
+
 xhr.onreadystatechange = function () {
   if (xhr.readyState !== 4) return;
   if (xhr.status >= 200 && xhr.status < 300) {
@@ -24,7 +32,6 @@ var getFeed = function(cat){
 var processFeed = function (data) {
   
   var stories = data.results.slice(0, limit);
-  
 
   // console.log(stories);
   // var category = document.createElement('h2');
@@ -48,11 +55,7 @@ var processFeed = function (data) {
 }
 
 
-var sanitizeHTML = function (str) {
-  var temp = document.createElement('div');
-  temp.textContent = str;
-  return temp.innerHTML;
-};
+
 
 categories.forEach(function (category) { 
   getFeed(category);
