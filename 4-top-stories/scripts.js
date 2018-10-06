@@ -22,7 +22,7 @@ var processFeed = function (stories) {
     `;
     storyArray.push(storyEl); // build an array - NOT BEING USED
     
-    elem.prepend(storyEl); // add to the array - ABOVE
+    elem.prepend(storyEl); 
   })
   console.log(storyArray); // just curious!
 }
