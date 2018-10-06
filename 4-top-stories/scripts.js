@@ -8,27 +8,26 @@ var storyArray = [];
 
 var processFeed = function (stories) {
   stories.forEach(function (story) {
-    // console.log(story);
     var storyEl = document.createElement('div');
     storyEl.className = 'feed-item';
     storyEl.innerHTML = `
-    <div style="min-height: 8rem;">
-    <img style="float:left; padding-right:1rem;" src="${story.multimedia[0].url}" /> 
-    <h3>
-    <a target="_blank" href="${story.short_url}">${story.title}</a>
-    </h3>
-    <p>${story.abstract}</p>
+    <div class="entry">
+      <h4>${story.section}</h4>
+      <div>
+      <img src="${story.multimedia[0].url}" /> 
+      <h3><a target="_blank" href="${story.short_url}">${story.title}</a></h3>
+      </div>
+      <p>${story.abstract}</p>
     </div>
     `;
-    console.log(storyEl);
-    storyArray.push(storyEl);
+    storyArray.push(storyEl); // build an array - NOT BEING USED
     
-    elem.prepend(storyEl); // temporary - build the array first
+    elem.prepend(storyEl); // add to the array - ABOVE
   })
-  console.log(storyArray);
+  console.log(storyArray); // just curious!
 }
 
-var requestTimesArticles = function(url, method) {
+var requestStories = function(url, method) {
   var request = new XMLHttpRequest();
   return new Promise(function (resolve, reject) {
     request.onreadystatechange = function () {
@@ -47,8 +46,8 @@ var requestTimesArticles = function(url, method) {
   });
 }
 
-categories.forEach(function (category) { 
-  requestTimesArticles('https://api.nytimes.com/svc/topstories/v2/'+category+'.json?api-key=' + nytapi)
+categories.forEach(function (category) {
+  requestStories('https://api.nytimes.com/svc/topstories/v2/'+category+'.json?api-key=' + nytapi)
   .then(function (posts) {
     var data = (JSON.parse(posts.responseText));
     var stories = data.results.slice(0, limit);
