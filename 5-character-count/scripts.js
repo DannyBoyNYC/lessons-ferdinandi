@@ -16,7 +16,7 @@ var countChars = function(chars){
 
 var keyUpHandlers = function(e){
     // run only if the entryArea is being used
-    if ( !e.target.id === 'entryArea' ){ return }
+    if ( !e.target.classList.contains('entry-area')){ return }
     // get the num of characters
     countChars( e.target.value );
     // don't even bother counting words if the space key is used
