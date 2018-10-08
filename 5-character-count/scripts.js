@@ -15,7 +15,7 @@ var countChars = function(chars){
 }
 
 var keyUpHandlers = function(e){
-    // run only if the entryArea is being used
+    // only if the entry area is being used - could I use focus?
     if ( !e.target.classList.contains('entry-area')){ return }
     // get the num of characters
     countChars( e.target.value );
