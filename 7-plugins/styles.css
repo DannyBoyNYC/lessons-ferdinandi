@@ -19,3 +19,15 @@
        max-width: 40em;
        width: 88%;
      }
+
+     .shown {
+       max-height: 32rem;
+       opacity: 1;
+       transition: all 0.5s linear;
+     }
+
+     .hidden {
+       max-height: 0;
+       opacity: 0;
+       transition: all 0.5s linear;
+     }

@@ -18,9 +18,7 @@ var tabsDeluxe = (function () {
     activators: 'tabs li a'
   };
   
-  //
-  // Methods
-  //
+  // /* Methods */
   
   /**
   * Merge two or more objects. Returns a new object.
@@ -54,23 +52,32 @@ var tabsDeluxe = (function () {
     // collect the content
     var tabDivs = Array.from(document.querySelectorAll('.' + settings.hiddenDivs));
     // hide the content
-    tabDivs.forEach(function (tab) {
-      tab.style.display = 'none';
-    })
+    hide(tabDivs)
+
+    function hide() {
+      tabDivs.forEach(function (tab) {
+        tab.classList.add('hidden');
+      })
+    }
+
+    function show(tabToShow) {
+      tabDivs.forEach(function (tab) {
+        if (tab.id == tabToShow) {
+          tab.classList.remove('hidden');
+          tab.classList.add('shown');
+          // tab.style.display = 'block'
+        }
+      })
+    }
 
     // Listen for clicks on the activators
     document.documentElement.addEventListener('click', function (event) {
       // If the clicked element has tabs as the closest class, it's a match!
       if (event.target.closest('.' + settings.activation)) {
         var elToShow = (event.target.hash)
-        var elToShow = elToShow.replace('#', '')
-        tabDivs.forEach(function (tab) {
-          tab.style.display = 'none';
-          // console.log(tab.id);
-          if (tab.id == elToShow) {
-            tab.style.display = 'block'
-          }
-        })
+        var elToShow = elToShow.replace('#', '');
+        hide(tabDivs);
+        show(elToShow)
       }
     }, false);
 
