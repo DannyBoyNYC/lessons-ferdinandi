@@ -12,13 +12,12 @@ var tabsDeluxe = (function () {
   
   // Defaults
   var defaults = {
-    hideAll: true,
     hiddenDivs: 'tab-pane',
     activation: 'tabs',
     activators: 'tabs li a'
   };
   
-  // /* Methods */
+  /* Methods */
   
   /**
   * Merge two or more objects. Returns a new object.
