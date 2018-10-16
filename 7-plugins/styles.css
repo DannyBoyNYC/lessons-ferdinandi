@@ -92,7 +92,7 @@ body {
   display: none;
 }
 
-button {
+.temp {
   background: #007eb6;
   color: #fff;
   padding: 0.5rem;

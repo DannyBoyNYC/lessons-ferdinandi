@@ -1,4 +1,4 @@
-var buttonSwitcher = document.querySelector('button');
+var buttonSwitcher = document.querySelector('.temp');
 buttonSwitcher.addEventListener('click', swapDivsForTesting, false);
 
 var swapDivsForTesting = function () {
