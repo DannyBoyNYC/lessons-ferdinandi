@@ -1,10 +1,13 @@
+var buttonSwitcher = document.querySelector('button');
+buttonSwitcher.addEventListener('click', swapDivsForTesting, false);
+
+var swapDivsForTesting = function () {
+  console.log('boo')
+  document.querySelector('.original-tabs').style.display = 'none'
+}
+
 var tabsDeluxe = (function () {
-  
   'use strict;'
-  
-  //
-  // Variables
-  //
   
   // Public APIs
   var publicAPIs = {};
@@ -12,13 +15,12 @@ var tabsDeluxe = (function () {
   
   // Defaults
   var defaults = {
-    hiddenDivs: 'tab-pane',
-    activation: 'tabs',
-    activators: 'tabs li a'
+    firstShowing: true,
+    hiddenElems: '.tab-pane',
+    activationElems: '.tabs'
   };
   
   /* Methods */
-  
   /**
   * Merge two or more objects. Returns a new object.
   * @param {Object}   objects  The objects to merge together
@@ -47,76 +49,58 @@ var tabsDeluxe = (function () {
     
   };
   
-  var showTab = function () {
-    // collect the content
-    var tabDivs = Array.from(document.querySelectorAll('.' + settings.hiddenDivs));
-    // hide the content
-    hide(tabDivs)
-
-    function hide() {
-      tabDivs.forEach(function (tab) {
-        tab.classList.add('hidden');
-      })
+  var showTabs = function () {
+    var tabDivs = Array.from(document.querySelectorAll(settings.hiddenElems));
+    // OPTION - allow the user to show the first tab
+    if (settings.firstShowing) {
+      tabDivs[0].classList.add('shown');
+      console.log(tabDivs[0]);
     }
-
-    function show(tabToShow) {
+    
+    var show = function(tabToShow) {
       tabDivs.forEach(function (tab) {
+        tab.classList.remove('shown')
         if (tab.id == tabToShow) {
-          tab.classList.remove('hidden');
-          tab.classList.add('shown');
-          // tab.style.display = 'block'
+          tab.classList.toggle('shown');
         }
       })
     }
-
+    
     // Listen for clicks on the activators
     document.documentElement.addEventListener('click', function (event) {
-      // If the clicked element has tabs as the closest class, it's a match!
-      if (event.target.closest('.' + settings.activation)) {
-        var elToShow = (event.target.hash)
-        var elToShow = elToShow.replace('#', '');
-        hide(tabDivs);
-        show(elToShow)
+      if (event.target.closest(settings.activationElems)) {
+        var elToShow = (event.target.hash).replace('#', '');
+        show(elToShow);
+        event.preventDefault();
       }
     }, false);
-
-
-
-    // If we should ask for the visitor's name
-    // if (settings.askForName) {
-    
-    // Ask for their name using the nameMessage setting
-    // var name = prompt(settings.nameMessage);
-    
-    // If they provide a name, use it.
-    // Otherwise, fall back to "friend"
-    // if (name) {
-    //   alert(settings.helloMessage(name));
-    // } else {
-    //   alert(settings.helloMessage('friend'));
-    // }
-    // }
-    
-    // Otherwise, just say hi
-    // else {
-    //   alert(settings.helloMessage(''));
-    // }
-    
   };
+
+
   
   publicAPIs.init = function (options) {
     // Merge user options into the defaults
     settings = extend(defaults, options || {});
-    showTab();
-    
+    showTabs();
   };
   
   return publicAPIs;
-  
+
 })();
 
-tabsDeluxe.init()
+/* generic call */
 
 // tabsDeluxe.init({
-//   hideAll: false
+//   firstShowing: true
 // });
+
+/* for testing alternate defaults */
+
+tabsDeluxe.init({
+  firstShowing: true,
+  hiddenElems: '.tab-pane',
+  activationElems: '.tabs'
+});
+
+
+

@@ -1,33 +1,104 @@
-		/**
-		 * Add box sizing to everything
-		 * @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
-		 */
-     *,
-     *:before,
-     *:after {
-       box-sizing: border-box;
-     }
- 
-     /**
-      * Layout
-      */
-     body {
-       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-       font-size: 112.5%;
-       margin-left: auto;
-       margin-right: auto;
-       max-width: 40em;
-       width: 88%;
-     }
+/**
+* Add box sizing to everything
+* @link http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+*/
 
-     .shown {
-       max-height: 32rem;
-       opacity: 1;
-       transition: all 0.5s linear;
-     }
+* {
+  margin: 0;
+  padding: 0;
+}
 
-     .hidden {
-       max-height: 0;
-       opacity: 0;
-       transition: all 0.5s linear;
-     }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+/**
+* Layout
+*/
+body {
+  font-family: 'Rancho', cursive;  
+  font-size: 100%;
+  color: #333;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
+  width: 88%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+.tabs li {
+  list-style: none;
+}
+.tabs a {
+  padding: 8px;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to bottom, #fcde41 1%, #dfa910 100%);
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.tab-content {
+  position: relative;
+}
+
+.tab-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all 0.25s linear;
+}
+
+.tab-pane h2 {
+  font-size: 2.25rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tab-pane p {
+  font-size: 1.75rem;
+}
+
+.shown {
+  opacity: 1;
+  transition: all 0.75s linear;
+}
+
+/* .shown-active { */
+  /* max-height: 32rem; */
+  /* transform: translateX(0); */
+  /* opacity: 1; */
+  /* max-height: 32rem; */
+/* } */
+
+.original-tabs {
+  display: block;
+}
+
+.alt-tabs {
+  display: none;
+}
+
+button {
+  background: #007eb6;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 6px;
+  outline: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
