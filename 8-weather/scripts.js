@@ -81,10 +81,11 @@ var weatherApp = (function() {
   
   publicAPIs.init = function (options) {
     settings = extend(defaults, options || {});
+    console.log(settings)
   };
   
   return publicAPIs;
   
 })();
 
-weatherApp.init();
+weatherApp.init('los Angeles');
