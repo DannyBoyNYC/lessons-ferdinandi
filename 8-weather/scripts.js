@@ -12,32 +12,6 @@ var weatherApp = (function() {
     weatherAPI: "https://api.weatherbit.io/v2.0/current"
   }
   
-  var makeRequest = function (url, method, success, failure, always) {
-    if (!url || !method) return;
-    
-    var xhr = new XMLHttpRequest();
-    
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState !== 4) return;
-      
-      if (xhr.status >= 200 && xhr.status < 300) {
-        if (success && typeof success === "function") {
-          success(JSON.parse(xhr.responseText), xhr);
-        }
-      } else {
-        if (failure && typeof failure === "function") {
-          failure(xhr);
-        }
-      }
-      if (always && typeof always === "function") {
-        always(JSON.parse(xhr.responseText), xhr);
-      }
-    };
-    
-    xhr.open(method, url);
-    xhr.send();
-  };
-  
   var extend = function () {
     
     // Variables
@@ -88,28 +62,23 @@ var weatherApp = (function() {
   })
   
   var getWeather = function (city) {
-    var request = `${defaults.weatherAPI}?&city=${userLocation}&key=${defaults.apiKey}`;
-    console.log(request)
-    console.log(city)
+    var request = `${defaults.weatherAPI}?&city=${city}&key=${defaults.apiKey}`;
+    getAPI(request, 'GET')
+      .then(function(data){
+        var weatherData = JSON.parse(data.responseText).data[0];
+        drawScreen(weatherData);
+      }
+    )
   }
   
-  // makeRequest(locationService, "GET", function(data) {
-  //   makeRequest(weather, "GET", function(weatherData) {
-  //     var rawWeatherData = weatherData.data[0];
-  //     drawScreen(rawWeatherData);
-  //   });
-  // });
-  
-  // var drawScreen = function(data) {
-  //   containerElem.innerText = `
-  //   The current temperature is ${data.temp} degrees Fahrenheit.
-  //   `;
-  //   //   console.log(data);
-  // }
+  var drawScreen = function(data) {
+    defaults.containerElem.innerText = `
+    The current temperature is ${data.temp} degrees Fahrenheit.
+    `;
+  }
   
   publicAPIs.init = function (options) {
     settings = extend(defaults, options || {});
-    // getWeather();
   };
   
   return publicAPIs;
