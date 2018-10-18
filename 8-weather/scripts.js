@@ -67,8 +67,10 @@ var weatherApp = (function() {
       .then(function(data){
         var weatherData = JSON.parse(data.responseText).data[0];
         drawScreen(weatherData);
-      }
-    )
+      })
+      .catch(function (error) {
+        drawScreen(error);
+      });
   }
   
   var drawScreen = function(data) {
