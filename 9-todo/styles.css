@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Paytone+One');
+
+:root {
+	--blue: #003366; 
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-size: 100%;
+	width: 100vw;
+	height: 100vh;
+	background: url('img/rosie.png') 50% 50% no-repeat;
+	background-size: cover;
+	display: flex;
+}
+
+a {
+	text-decoration: none;
+}
+
+[data-app] {
+	background-color: #fff;
+	padding: 2rem 2rem 2rem 2rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80vw;
+	align-self: center;
+	border-radius: 3px;
+	box-shadow: 0px 0px 8px var(--blue);
+}
+
+h3 {
+	font-family: 'Paytone One', sans-serif;
+	font-size: 1.5rem;
+	margin:0;
+	margin-bottom: 1.5rem;
+	color: var(--blue);
+	font-weight: normal;
+
+}
+
+h3 span {
+	display: block;
+	font-size: 1.25rem;
+}
+
+.navlink {
+	margin: 2rem 0 0 0;
+	float: right;
+}
+
+.todo-list,
+.todos {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	list-style: none;
+	padding-bottom: 1.5rem;
+}
+
+.todo-list li,
+.todos li {
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	padding: 10px 0;
+	font-weight: 100;
+	display: flex;
+	align-items: center;
+}
+
+.todo-list label,
+.todos label {
+	flex:1;
+	cursor: pointer;
+}
+
+[data-app="todolists"] .todo-list a,
+.navlink {
+	background-color: #d21111;
+	color: #fff;
+	display: inline-block;
+	border-radius: 3px;
+	padding: 3px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.todo-list input,
+.todos input {
+	display: none;
+}
+
+.todo-list input + label:before,
+.todos input + label:before {
+	content: '⬜️';
+	margin-right: 10px;
+}
+
+.todo-list input:checked + label:before,
+.todos input:checked + label:before {
+	content: '🎯';
+}
+
+.add-list-form input,
+.add-items input {
+	padding: 6px;
+	outline: 0;
+	font-size: 0.875rem;
+	border: 1px solid rgba(0,0,0,0.2);
+}
+
+.add-list-form [type="submit"],
+.add-items [type="submit"] {
+	background-color: var(--blue);
+	color: #fff;
+	border-radius: 3px;
+}
+
+/* [data-app="todolists"] a {
+	display: block;
+} */
+

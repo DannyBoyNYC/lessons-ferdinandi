@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Getting Things Done</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+	
+	<div data-app="todolist">
+		<h3>To Do List</h3>
+		<ul class="todos">
+			<li>You haven't created any Todos yet.</li>
+		</ul>
+		<form class="add-items">
+			<input type="text" name="todo" placeholder="To do" required>
+			<input type="submit" value="Add To Do">
+		</form>	
+
+		<a class="navlink" onclick="history.back(-1); event.preventDefault();" href="#">Back</a>
+
+	</div>
+	
+	<script src="../scripts.js"></script>
+	
+</body>
+</html>
