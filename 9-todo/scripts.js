@@ -94,7 +94,7 @@ var getTodoLists = function(){
             }).join('');
 
             if (todoListItems == ''){
-                todoListItems = `<li>You haven't created any Todo lists yet.</li>`
+                todoListItems = `<li>You haven't created any Todo items for this list yet.</li>`
             }
 
             toDoList.innerHTML = todoListItems;
