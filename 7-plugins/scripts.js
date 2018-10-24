@@ -97,7 +97,7 @@ var tabsDeluxe = (function () {
 /* for testing alternate defaults */
 
 tabsDeluxe.init({
-  firstShowing: true,
+  firstShowing: false,
   hiddenElems: '.tab-pane',
   activationElems: '.tabs'
 });
