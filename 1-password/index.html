@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Password Visibility</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+  <body>
+    <h1>Password Visibility</h1>
+
+    <p>Enter your username and password to login.</p>
+
+    <form>
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <label class="floating-label" for="password">Username</label>
+        </div>
+      </div>
+
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <i class="material-icons text-field__icon">visibility</i>
+
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+
+          <label class="floating-label" for="password">Password</label>
+        </div>
+      </div>
+
+      <p>
+        <button type="submit">Log In</button>
+      </p>
+    </form>
+    <script src="static/scripts.js"></script>
+  </body>
+</html>
