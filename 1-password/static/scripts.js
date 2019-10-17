@@ -3,6 +3,8 @@
 
   document.addEventListener('click', clickHandler, false);
 
+  const passWordField = document.querySelector('#password');
+
   function clickHandler(event) {
     if (!event.target.matches('i')) return;
 
@@ -11,10 +13,10 @@
 
     if (result) {
       event.target.classList.remove('selected');
-      document.querySelector('#password').setAttribute('type', 'password');
+      passWordField.setAttribute('type', 'password');
     } else {
       event.target.classList.add('selected');
-      document.querySelector('#password').setAttribute('type', 'text');
+      passWordField.setAttribute('type', 'text');
     }
   }
 })(window, document);
