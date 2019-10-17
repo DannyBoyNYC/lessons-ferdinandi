@@ -1,7 +1,7 @@
 // (function(window, document, undefined) {
 //   'use strict';
 
-const passwordFields = Array.from(
+const passwordFields = Array.prototype.slice.call(
   document.querySelectorAll('input[type="password"]'),
 );
 
