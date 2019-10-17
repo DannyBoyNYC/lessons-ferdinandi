@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Password Visibility</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/styles-multi.css" />
+  </head>
+  <body>
+    <h1>Password Visibility - Multiple Fields</h1>
+
+    <p>Enter your current password and new password below.</p>
+
+    <form>
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="password"
+            name="password"
+            id="current-password"
+            placeholder="Password"
+          />
+
+          <label class="floating-label" for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="password"
+            name="password"
+            id="new-password"
+            placeholder="Password"
+          />
+
+          <label class="floating-label" for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="multi-select">
+        <label for="show-passwords">
+          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          Show passwords
+          <i class="material-icons text-field__icon visible">visibility</i>
+          <i class="material-icons text-field__icon notvisible"
+            >visibility_off</i
+          >
+        </label>
+      </div>
+
+      <p>
+        <button type="submit">Change Password</button>
+      </p>
+    </form>
+    <script src="static/scripts-multi.js"></script>
+  </body>
+</html>
