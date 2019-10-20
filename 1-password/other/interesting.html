@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <fieldset>
+        <legend>
+          Enter your username and password to change your username
+        </legend>
+        <form>
+          <div>
+            <label for="username">
+              <span>Username</span>
+            </label>
+            <input type="text" name="username" id="username" />
+          </div>
+          <div>
+            <label for="password">
+              <span>Password</span>
+            </label>
+            <input type="password" name="password" id="password" />
+          </div>
+          <div>
+            <label for="show-password">
+              <input type="checkbox" name="show-password" id="show-password" />
+              <span>Show password</span>
+            </label>
+          </div>
+
+          <button type="button" aria-pressed="false">Change Username</button>
+        </form>
+      </fieldset>
+      <fieldset>
+        <legend>Enter your current password and new password below</legend>
+        <form>
+          <div>
+            <label for="current-password">
+              <span>Current Password</span>
+            </label>
+            <input
+              type="password"
+              name="current-password"
+              id="current-password"
+            />
+          </div>
+          <div>
+            <label for="new-password">
+              <span>New Password</span>
+            </label>
+            <input type="password" name="show-password" id="new-password" />
+          </div>
+          <div>
+            <label for="show-passwords">
+              <input
+                type="checkbox"
+                name="show-passwords"
+                id="show-passwords"
+              />
+              <span>Show password</span>
+            </label>
+          </div>
+          <p>
+            <button type="button" aria-pressed="false">Change Password</button>
+          </p>
+        </form>
+      </fieldset>
+    </div>
+    <script src="interesting.js"></script>
+  </body>
+</html>

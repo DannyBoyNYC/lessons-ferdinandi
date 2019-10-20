@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Password Visibility - multiple forms</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/styles-multi-two.css" />
+  </head>
+  <body>
+    <h1>Password Visibility - Multiple Fields</h1>
+    <h2>Change Username</h2>
+
+    <p>Enter your username and password to change your username.</p>
+
+    <form class="form-one">
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+          />
+          <label class="floating-label" for="username">Username</label>
+        </div>
+      </div>
+
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+          <label class="floating-label" for="password">Password</label>
+        </div>
+      </div>
+
+      <div class="multi-select">
+        <label for="show-password">
+          <input type="checkbox" name="show-password" id="show-password" />
+          Show password
+          <i class="material-icons text-field__icon visible">visibility</i>
+          <i class="material-icons text-field__icon notvisible"
+            >visibility_off</i
+          >
+        </label>
+        <button type="submit">Change Username</button>
+      </div>
+    </form>
+
+    <h2>Change Password</h2>
+
+    <p>Enter your current password and new password below.</p>
+
+    <form class="form-two">
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="password"
+            name="current-password"
+            id="current-password"
+            placeholder="Current Password"
+          />
+          <label class="floating-label" for="current-password"
+            >Current Password</label
+          >
+        </div>
+      </div>
+
+      <div class="inline-text-field-container">
+        <div class="text-field text-field-with-trailing-icon">
+          <input
+            type="password"
+            name="new-password"
+            id="new-password"
+            placeholder="New Password"
+          />
+          <label class="floating-label" for="new-password">New Password</label>
+        </div>
+      </div>
+
+      <div class="multi-select">
+        <label for="show-passwords">
+          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          Show passwords
+          <i class="material-icons text-field__icon visible">visibility</i>
+          <i class="material-icons text-field__icon notvisible"
+            >visibility_off</i
+          >
+        </label>
+        <button type="submit">Change Passwords</button>
+      </div>
+    </form>
+
+    <script src="static/scripts-multi-two.js"></script>
+  </body>
+</html>
