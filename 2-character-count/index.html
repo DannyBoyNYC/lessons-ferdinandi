@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Character Count</title>
+    <link rel="stylesheet" href="../_base.css" />
+    <style type="text/css">
+      body {
+        margin: 1em auto;
+        max-width: 40em;
+        max-width: 80vw;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+          'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+          'Helvetica Neue', sans-serif;
+        font-size: 100%;
+        background-color: #222;
+        color: #fff;
+      }
+
+      label {
+        display: block;
+        width: 100%;
+      }
+      textarea {
+        min-height: 24em;
+        width: 100%;
+      }
+      #character-count {
+        font-size: 1rem;
+        transition: all 0.1s linear;
+      }
+      #character-count.active {
+        font-size: 4rem;
+      }
+      p {
+        display: flex;
+        align-items: flex-end;
+        height: 3rem;
+      }
+      p strong {
+        padding: 0 0.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Character Count</h1>
+
+    <label for="text">Enter your text below.</label>
+    <textarea id="text"></textarea>
+
+    <p>
+      You've written
+      <strong id="character-count">0</strong> characters.
+    </p>
+
+    <script>
+      const inputEl = document.querySelector('#text');
+      const count = document.querySelector('#character-count');
+
+      inputEl.value = '';
+
+      function keyupHandlers() {
+        if (!event.target.matches('#text')) return;
+
+        numLetters = inputEl.value.length;
+        count.classList.add('active');
+        count.innerText = numLetters;
+      }
+
+      function toggleActive() {
+        console.log(event.propertyName);
+        count.classList.remove('active');
+      }
+
+      document.addEventListener('keyup', keyupHandlers);
+      document.addEventListener('transitionend', toggleActive);
+    </script>
+  </body>
+</html>
