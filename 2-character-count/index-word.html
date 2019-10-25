@@ -54,39 +54,47 @@
     <label for="text">Enter your text below.</label>
     <textarea id="text"></textarea>
 
-    <p>
+    <p aria-live="polite">
       You've written <strong><span id="word-count">0</span> words</strong> and
       <strong><span id="character-count">0</span> characters</strong>.
     </p>
 
     <script>
-      const inputEl = document.querySelector('#text');
-      const count = document.querySelector('#character-count');
+      // (function() {
+      'use strict';
+      const text = document.querySelector('#text');
+      const charCount = document.querySelector('#character-count');
       const wordCount = document.querySelector('#word-count');
 
-      inputEl.value = '';
+      let wordLen = 0;
+      text.value = '';
 
       function keyupHandlers() {
         if (!event.target.matches('#text')) return;
 
-        numLetters = inputEl.value.length;
-        count.classList.add('active');
-        count.innerText = numLetters;
+        charCount.classList.add('active');
+        charCount.innerText = text.value.length;
 
-        numWords = inputEl.value.split(' ');
-        if (numWords[numWords.length - 1] === '') {
+        let numWords = text.value
+          .split(/[\n\r\s]+/g)
+          .filter(word => word.length > 0);
+
+        if (wordLen !== numWords.length) {
           wordCount.classList.add('active');
+          wordLen = numWords.length;
         }
+
         wordCount.innerText = numWords.length;
       }
 
       function toggleActive() {
-        count.classList.remove('active');
+        charCount.classList.remove('active');
         wordCount.classList.remove('active');
       }
 
       document.addEventListener('keyup', keyupHandlers);
       document.addEventListener('transitionend', toggleActive);
+      // })();
     </script>
   </body>
 </html>
