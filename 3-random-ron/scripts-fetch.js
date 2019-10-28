@@ -3,11 +3,20 @@
 var displayElem = document.querySelector('.quote');
 displayElem.innerText = 'Click the button for wisdom.';
 
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
+
 function makeRequest(endpoint, callback) {
   if (!endpoint || !callback) return;
   fetch(endpoint)
+    .then(handleErrors)
     .then(response => response.json())
-    .then(data => callback(data));
+    .then(data => callback(data))
+    .catch(error => console.log(error));
 }
 
 function getWisdom() {

@@ -50,7 +50,7 @@ button:active {
 		 * Blockquotes
 		 */
 blockquote {
-  /* border-left: 0.25em solid #e5e5e5; */
+  min-height: 5rem;
   font-family: Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text',
     'Times New Roman', serif;
   font-style: italic;
