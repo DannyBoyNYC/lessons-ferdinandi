@@ -1,4 +1,4 @@
-## Day 14 - Random quotes
+## Day 17 - Random ron quotes - no dupes
 
 [Demo](http://oit2.scps.nyu.edu/~devereld/ferdinandi/3-random-ron/random-ron.html)
 

@@ -1,6 +1,8 @@
 'use strict';
 
 var displayElem = document.querySelector('.quote');
+var btn = document.querySelector('button');
+var quotes = [];
 displayElem.innerText = 'Click the button for wisdom.';
 
 function handleErrors(response) {
@@ -22,7 +24,16 @@ function makeRequest(endpoint, callback) {
 function getWisdom() {
   if (!event.target.matches('button')) return;
   makeRequest('http://ron-swanson-quotes.herokuapp.com/v2/quotes', post => {
-    displayElem.innerHTML = `<blockquote>${post}</bockquote>`;
+    if (quotes.indexOf(post[0]) > -1) {
+      console.log('hit');
+      btn.click();
+      return;
+    }
+    displayElem.innerHTML = post;
+    quotes.push(post[0]);
+    if (quotes.length > 50) {
+      quotes = [];
+    }
   });
   event.target.innerText = 'More Ron';
 }
