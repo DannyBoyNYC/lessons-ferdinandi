@@ -1,8 +1,6 @@
-// time stamp
-
 // Variables
 var monsters = [
-  'sock!',
+  'sock.svg',
   'monster1.svg',
   'monster2.svg',
   'monster3.svg',
@@ -22,20 +20,12 @@ var audio = document.querySelector(`.audio-lose`);
 var correctAnswers = 0;
 var correctAnswersElem = document.querySelector('.correct-answers');
 var rootElem = document.getElementById('app');
-rootElem.textContent = '';
 
-var row = document.createElement('div');
+var row = document.createElement('ul');
 row.classList.add('row');
 rootElem.prepend(row);
 
 // methods
-
-/**
- * Randomly shuffle an array
- * https://stackoverflow.com/a/2450976/1293256
- * @param  {Array} array The array to shuffle
- * @return {String}      The first item in the shuffled array
- */
 var shuffle = function(array) {
   var currentIndex = array.length;
   var temporaryValue, randomIndex;
@@ -57,22 +47,19 @@ var prepMonsters = function() {
 
   // Create the HTML and inject it into the DOM
 
-  for (var i = 0; i < monsterMash.length; i++) {
-    var monster = document.createElement('div');
-    monster.classList.add('grid');
-    if (monsterMash[i].lastIndexOf('.svg') !== -1) {
-      monster.classList.add(monsterMash[i].replace('.svg', ''));
-    } else {
-      monster.classList.add('sock');
-    }
-    row.appendChild(monster);
-  }
+  row.innerHTML = monsterMash
+    .map((monster, index) => {
+      return `<li class="grid" aria-live="polite">
+        <button><img src="img/door.svg" data-monster-id=${index} alt="Click on a door to see what\'s behind it" /></button>
+      </li>`;
+    })
+    .join('');
 };
 
 var playAgain = function() {
   var playBtn = document.createElement('button');
   playBtn.setAttribute('class', 'btn');
-  playBtn.innerHTML = 'Play Again?';
+  playBtn.innerText = 'Play Again?';
   playBtn.addEventListener('click', reload, false);
   document.querySelector('.boom').append(playBtn);
 };
@@ -88,29 +75,32 @@ var winner = function() {
   playAgain();
 };
 
-var clickListeners = function(e) {
-  if (!event.target.closest('.row')) {
-    return;
-  }
-  document.querySelector('h1 + p').innerText = '';
-  var classes = Array.from(e.target.classList);
-  if (classes[1].includes('monster')) {
-    e.target.classList.add('reveal');
-    correctAnswers += 1;
-    if (correctAnswers === 11) {
-      winner();
-    } else {
-      correctAnswersElem.innerText = `You've collected ${correctAnswers} monsters`;
-    }
-  } else if (classes[1].includes('sock')) {
-    correctAnswersElem.innerText = `You're a LOSER BABY!`;
-    correctAnswersElem.classList.add('boom');
-    rootElem.textContent = '';
-    audioBg.pause();
-    audio.currentTime = 0;
-    audio.play();
-    playAgain();
-  }
+var clickListeners = function() {
+  var monster = event.target.closest('[data-monster-id]');
+  if (!monster) return;
+
+  var id = monster.getAttribute('data-monster-id');
+  console.log(id);
+  monster.parentNode.innerHTML = `<img alt="${monsters[id]}" src="img/${monsters[id]}" />`;
+  // document.querySelector('h1 + p').innerText = '';
+  // var classes = Array.from(event.target.classList);
+  // if (classes[1].includes('monster')) {
+  //   event.target.classList.add('reveal');
+  //   correctAnswers += 1;
+  //   if (correctAnswers === 11) {
+  //     winner();
+  //   } else {
+  //     correctAnswersElem.innerText = `You've collected ${correctAnswers} monsters`;
+  //   }
+  // } else if (classes[1].includes('sock')) {
+  //   correctAnswersElem.innerText = `You're a LOSER BABY!`;
+  //   correctAnswersElem.classList.add('boom');
+  //   rootElem.textContent = '';
+  //   audioBg.pause();
+  //   audio.currentTime = 0;
+  //   audio.play();
+  //   playAgain();
+  // }
 };
 
 // event listeners and inits
