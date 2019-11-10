@@ -23,7 +23,7 @@
       // Get the app
       var app = document.querySelector('#app');
       // Store API key to a variable for easier access
-      var apiKey = '1234abcd';
+      var apiKey = 'cGKSCRZuXhcpv5wX59icpRRFGAqG4Mg8';
       // Set the sections and number of articles to show to variables so they can be easily changed later
       var sections = ['technology', 'science', 'magazine'];
       var numberOfArticles = 3;
@@ -89,12 +89,27 @@
             // Get the first few articles
             var firstFew = getFirstFew(data.results);
             // Render them into the DOM
+            sanitizeHTML(firstFew);
+            console.log(firstFew);
             render(firstFew, section);
           })
           .catch(function(error) {
             console.log('Something went wrong:', error);
           });
       };
+
+      /*!
+       * Sanitize and encode all HTML in a user-submitted string
+       * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+       * @param  {String} str  The user-submitted string
+       * @return {String} str  The sanitized string
+       */
+      var sanitizeHTML = function(str) {
+        var temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+      };
+
       // Get articles for each section
       sections.forEach(function(section) {
         getArticles(section);
