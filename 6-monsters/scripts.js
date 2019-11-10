@@ -1,17 +1,17 @@
 // Variables
 var monsters = [
-  'sock.svg',
-  'monster1.svg',
-  'monster2.svg',
-  'monster3.svg',
-  'monster4.svg',
-  'monster5.svg',
-  'monster6.svg',
-  'monster7.svg',
-  'monster8.svg',
-  'monster9.svg',
-  'monster10.svg',
-  'monster11.svg',
+  'sock',
+  'monster1',
+  'monster2',
+  'monster3',
+  'monster4',
+  'monster5',
+  'monster6',
+  'monster7',
+  'monster8',
+  'monster9',
+  'monster10',
+  'monster11',
 ];
 
 var audioBg = document.querySelector('.audio-bg');
@@ -45,8 +45,6 @@ var prepMonsters = function() {
 
   var monsterMash = shuffle(monsters);
 
-  // Create the HTML and inject it into the DOM
-
   row.innerHTML = monsterMash
     .map((monster, index) => {
       return `<li class="grid" aria-live="polite">
@@ -61,7 +59,7 @@ var playAgain = function() {
   playBtn.setAttribute('class', 'btn');
   playBtn.innerText = 'Play Again?';
   playBtn.addEventListener('click', reload, false);
-  document.querySelector('.boom').append(playBtn);
+  document.querySelector('.boom').after(playBtn);
 };
 
 var reload = function() {
@@ -80,34 +78,25 @@ var clickListeners = function() {
   if (!monster) return;
 
   var id = monster.getAttribute('data-monster-id');
-  console.log(id);
-  monster.parentNode.innerHTML = `<img alt="${monsters[id]}" src="img/${monsters[id]}" />`;
-  // document.querySelector('h1 + p').innerText = '';
-  // var classes = Array.from(event.target.classList);
-  // if (classes[1].includes('monster')) {
-  //   event.target.classList.add('reveal');
-  //   correctAnswers += 1;
-  //   if (correctAnswers === 11) {
-  //     winner();
-  //   } else {
-  //     correctAnswersElem.innerText = `You've collected ${correctAnswers} monsters`;
-  //   }
-  // } else if (classes[1].includes('sock')) {
-  //   correctAnswersElem.innerText = `You're a LOSER BABY!`;
-  //   correctAnswersElem.classList.add('boom');
-  //   rootElem.textContent = '';
-  //   audioBg.pause();
-  //   audio.currentTime = 0;
-  //   audio.play();
-  //   playAgain();
-  // }
+  monster.parentNode.innerHTML = `<img alt="${monsters[id]}" src="img/${monsters[id]}.svg" />`;
+  console.log(monsters[id]);
+  if (monsters[id] !== 'sock') {
+    if (correctAnswers === 11) {
+      winner();
+    } else {
+      correctAnswers += 1;
+      correctAnswersElem.innerText = `You've collected ${correctAnswers} monsters`;
+    }
+  } else if (monsters[id] === 'sock') {
+    correctAnswersElem.innerText = `You're a LOSER BABY!`;
+    correctAnswersElem.classList.add('boom');
+    audioBg.pause();
+    audio.currentTime = 0;
+    audio.play();
+    playAgain();
+  }
 };
 
 // event listeners and inits
 prepMonsters();
 document.addEventListener('click', clickListeners, false);
-
-// scratchpad
-// var image = document.createElement('img');
-// image.setAttribute('src', monsterMash[i]);
-// monster.appendChild(image);
