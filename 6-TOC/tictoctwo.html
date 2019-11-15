@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Table of Contents</title>
+    <title>Table of Contents - Missing IDs</title>
 
     <style type="text/css">
       body {
@@ -12,11 +12,11 @@
     </style>
   </head>
   <body>
-    <h1>Table of Contents</h1>
+    <h1>Table of Contents - Missing IDs</h1>
 
     <div id="table-of-contents"></div>
 
-    <h2 id="cat-o-nine-tails">Cat O'Nine Tails</h2>
+    <h2>Cat O'Nine Tails</h2>
 
     <p>
       Cat o'nine tails Pieces of Eight swab carouser tackle. Pink hornswaggle
@@ -35,7 +35,7 @@
       fluke pillage rope's end brig.
     </p>
 
-    <h4 id="privateer">Privateer</h4>
+    <h4>Privateer</h4>
 
     <p>
       Tack topgallant draft line flogging. Maroon overhaul grog blossom
@@ -48,7 +48,7 @@
       bow.
     </p>
 
-    <h2 id="ahoy">Ahoy</h2>
+    <h2>Ahoy</h2>
 
     <p>
       Booty squiffy wench overhaul ahoy. Parrel Pirate Round long clothes long
@@ -102,7 +102,7 @@
       Lanyard gabion reef sails booty gaff.
     </p>
 
-    <h4 id="sea-legs">Sea Legs</h4>
+    <h4>Sea Legs</h4>
 
     <p>
       Sea Legs to go on account skysail Yellow Jack heave down. Spanker heave
@@ -138,7 +138,7 @@
       hornswaggle Privateer marooned.
     </p>
 
-    <h2 id="davy-jones-locker">Davy Jones' Locker</h2>
+    <h2>Davy Jones' Locker</h2>
 
     <p>
       Davy Jones' Locker jib trysail bowsprit heave down. Transom square-rigged
@@ -167,31 +167,44 @@
     </footer>
 
     <script>
-      var toc = document.querySelector('#table-of-contents');
+      // Get the table of contents container
+      var tableOfContents = document.querySelector('#table-of-contents');
 
-      var secondLevelHeaders = Array.prototype.slice.call(
-        document.querySelectorAll('h2[id]'),
-      );
+      // Get all of the h2 headings in the document
+      var headings = document.querySelectorAll('h2');
 
-      console.log(secondLevelHeaders);
+      var temp = Array.prototype.slice.call(headings);
 
-      var html =
-        '<ul>' +
-        secondLevelHeaders
-          .map(function(header) {
-            return (
-              '<li>' +
-              '<a href=#' +
-              header.id +
-              '>' +
-              header.textContent +
-              '</a></li>'
-            );
-          })
-          .join('') +
-        '</ul>';
+      temp.forEach((item, index) => {
+        if (!item.id) {
+          item.id = index;
+        }
+      });
 
-      toc.innerHTML = html;
+      // Make sure there's at least one heading
+      // Only generate markup if there are heading elements
+      if (headings.length > 0) {
+        // Set the HTML for the table of contents container
+        // Add a heading and an ordered list
+        // Convert the headings NodeList to an array, and use the array.map() method
+        // to create an array of markup strings that we'll combine with the array.join() method
+        tableOfContents.innerHTML =
+          '<h2>Table of Contents</h2>' +
+          '<ol>' +
+          Array.prototype.slice
+            .call(headings)
+            .map(function(heading) {
+              return (
+                '<li><a href="#' +
+                heading.id +
+                '">' +
+                heading.textContent +
+                '</a></li>'
+              );
+            })
+            .join('') +
+          '</ol>';
+      }
     </script>
   </body>
 </html>
