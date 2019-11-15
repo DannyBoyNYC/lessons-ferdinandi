@@ -179,9 +179,9 @@
       // Get all of the h2 headings in the document
       var headings = document.querySelectorAll('h2');
 
-      var temp = Array.prototype.slice.call(headings);
+      var header = Array.prototype.slice.call(headings);
 
-      temp.forEach((item, index) => {
+      header.forEach((item, index) => {
         if (!item.id) {
           item.id = index;
         }
