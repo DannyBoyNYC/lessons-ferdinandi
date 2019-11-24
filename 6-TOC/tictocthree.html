@@ -15,6 +15,9 @@
       :target:before {
         content: '> ';
       }
+      body {
+        padding-bottom: 80vh;
+      }
     </style>
   </head>
   <body>
@@ -173,48 +176,33 @@
     </footer>
 
     <script>
-      // Get the table of contents container
-      var tableOfContents = document.querySelector('#table-of-contents');
+      (function() {
+        var tableOfContents = document.querySelector('#table-of-contents');
+        var headings = document.querySelectorAll('h2');
 
-      // Get all of the h2 headings in the document
-      var headings = document.querySelectorAll('h2');
-
-      // var header = Array.prototype.slice.call(headings);
-
-      // header.forEach((item, index) => {
-      //   if (!item.id) {
-      //     item.id = index;
-      //   }
-      // });
-
-      // Make sure there's at least one heading
-      // Only generate markup if there are heading elements
-      if (headings.length > 0) {
-        // Set the HTML for the table of contents container
-        // Add a heading and an ordered list
-        // Convert the headings NodeList to an array, and use the array.map() method
-        // to create an array of markup strings that we'll combine with the array.join() method
-        tableOfContents.innerHTML =
-          '<h2>Table of Contents</h2>' +
-          '<ol>' +
-          Array.prototype.slice
-            .call(headings)
-            .map(function(heading) {
-              if (heading.id.length < 1) {
-                // Replace anything that's not a letter or number with dashes
-                heading.id = heading.textContent.replace(/[^a-z0-9]+/gi, '-');
-              }
-              return (
-                '<li><a href="#' +
-                heading.id +
-                '">' +
-                heading.textContent +
-                '</a></li>'
-              );
-            })
-            .join('') +
-          '</ol>';
-      }
+        if (headings.length > 0) {
+          tableOfContents.innerHTML =
+            '<h2>Table of Contents</h2>' +
+            '<ol>' +
+            Array.prototype.slice
+              .call(headings)
+              .map(function(heading) {
+                if (heading.id.length < 1) {
+                  // Replace anything that's not a letter or number with dashes
+                  heading.id = heading.textContent.replace(/[^a-z0-9]+/gi, '-');
+                }
+                return (
+                  '<li><a href="#' +
+                  heading.id +
+                  '">' +
+                  heading.textContent +
+                  '</a></li>'
+                );
+              })
+              .join('') +
+            '</ol>';
+        }
+      })();
     </script>
   </body>
 </html>
