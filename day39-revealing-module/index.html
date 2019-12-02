@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Helper Library</title>
+
+    <style type="text/css">
+      body {
+        margin: 1em auto;
+        max-width: 40em;
+        width: 88%;
+      }
+
+      .btn-blue {
+        background-color: #0088cc;
+        color: #ffffff;
+      }
+
+      .btn-purple {
+        background-color: rebeccapurple;
+        color: #ffffff;
+      }
+      .myclass {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Helper Library</h1>
+
+    <p>All of the fun here happens in the console.</p>
+
+    <p>
+      <button class="btn-blue" id="button-1">Button 1</button>
+      <button class="btn-blue" id="button-2">Button 2</button>
+      <button class="btn-blue" id="button-3">Button 3</button>
+    </p>
+
+    <script>
+      var utils = (function() {
+        var createArray = function(iterable) {
+          return [].concat(iterable);
+        };
+
+        // Holds our public methods
+        var methods = {};
+
+        methods.nodeListToArray = function(nodelist) {
+          return createArray(nodelist);
+        };
+
+        methods.firstMatchingElem = function(selector) {
+          // console.log(typeof selector);
+          var elem = document.querySelector(selector);
+          if (elem === null) {
+            return `No ${selector} was found.`;
+          } else {
+            return elem;
+          }
+        };
+
+        methods.getAllMatchingElements = function(elem) {
+          var collection = document.querySelectorAll(elem);
+          if (collection.length > 0) {
+            return createArray(collection);
+          } else {
+            return `No ${elem} was found.`;
+          }
+        };
+
+        methods.addClassToElements = function(elem, className) {
+          document
+            .querySelectorAll(elem)
+            .forEach(item => item.classList.add(className));
+        };
+
+        methods.removeClassFromElements = function(elem, className) {
+          document
+            .querySelectorAll(elem)
+            .forEach(item => item.classList.remove(className));
+        };
+
+        return methods;
+      })();
+
+      var testone = utils.nodeListToArray(document.querySelectorAll('button'));
+      var testtwo = utils.firstMatchingElem('li');
+      var testthree = utils.firstMatchingElem('button');
+      var testfour = utils.getAllMatchingElements('button');
+      var testfive = utils.getAllMatchingElements('li');
+      var testsix = utils.addClassToElements('button', 'myclass');
+      var testseven = utils.removeClassFromElements('button', 'btn-blue');
+      console.log('test nodelist to array ', testone);
+      console.log('test bad - first matching element ', testtwo);
+      console.log('test good - first matching element ', testthree);
+      console.log('test good - matching elements to array ', testfour);
+      console.log('test bad - matching elements to array ', testfive);
+      console.log('test good - add class to elements ', testsix);
+      console.log('test good - remove class from elements ', testseven);
+    </script>
+  </body>
+</html>
