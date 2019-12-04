@@ -198,7 +198,7 @@
        */
       var clickHandler = function(event) {
         // If a "play again" button was clicked, reset the UI and end the callback function
-        if (event.target.hasAttribute('data-monster-play-again')) {
+        if (event.target.hasAttribute('[data-monster-play-again]')) {
           renderMonsters();
           return;
         }
@@ -206,18 +206,15 @@
         // Check if clicked element or it's parent has a [data-monster-id] attribute
         // If not, it's not a monster
         // return and stop running our callback function
-        var monster = event.target.closest('[data-monster-id]');
-        console.log(monster);
+        var monster = event.target.closest('data-monster-id');
         if (!monster) return;
 
         // Get the monster's index in the array
         var id = monster.getAttribute('data-monster-id');
-        console.log(id);
 
         // If the door reveals a sock, render the lost UI
         // Then, end the callback function
-        if (monsters[id] === 'sock') {
-          console.log(monsters[id]);
+        if ((monsters[id] = 'socks')) {
           renderLost();
           return;
         }
