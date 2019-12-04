@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Manipulation Library</title>
+
+    <style type="text/css">
+      body {
+        margin: 1em auto;
+        max-width: 40em;
+        width: 88%;
+      }
+      button {
+        padding: 0.25rem;
+      }
+      .btn-blue {
+        background-color: #0088cc;
+        color: #ffffff;
+      }
+
+      .btn-purple {
+        background-color: rebeccapurple;
+        color: #ffffff;
+      }
+      .temp::after {
+        content: '[class temp]';
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM Manipulation Library</h1>
+
+    <p>All of the fun here happens in the console.</p>
+
+    <p>
+      <button class="btn-blue" id="button-1">Button 1</button>
+      <button class="btn-blue" id="button-2">Button 2</button>
+      <button class="btn-blue" id="button-3">Button 3</button>
+    </p>
+
+    <ul>
+      <li class="temp">Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <script>
+      var $ = (function() {
+        var Constructor = function(elem) {
+          this.elems = document.querySelectorAll(elem);
+        };
+
+        Constructor.prototype.getArray = function() {
+          return Array.prototype.slice.call(this.elems);
+        };
+
+        Constructor.prototype.getFirst = function() {
+          return this.elems[0];
+        };
+
+        Constructor.prototype.getLast = function() {
+          return this.elems[this.elems.length - 1];
+        };
+
+        Constructor.prototype.addClass = function(className) {
+          this.getArray().forEach(function(elem) {
+            elem.classList.add(className);
+          });
+          return this;
+        };
+
+        Constructor.prototype.removeClass = function(className) {
+          this.getArray().forEach(function(elem) {
+            elem.classList.remove(className);
+          });
+          return this;
+        };
+
+        return Constructor;
+      })();
+
+      // test getArray
+      const list = new $('li');
+      const buttons = new $('button');
+
+      console.log(list);
+      console.log(list.getArray());
+      console.log(list.getFirst());
+      console.log(list.getLast());
+      console.log(buttons.addClass('btn-purple'));
+      console.log(buttons.removeClass('btn-blue'));
+      console.log(list.addClass('btn-purple').removeClass('btn-blue'));
+    </script>
+  </body>
+</html>
