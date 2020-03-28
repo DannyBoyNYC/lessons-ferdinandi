@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Autosave</title>
+
+    <style type="text/css">
+      body {
+        margin: 1em auto;
+        max-width: 40em;
+        width: 88%;
+      }
+
+      label,
+      input,
+      textarea {
+        display: block;
+        width: 100%;
+        height: 2rem;
+      }
+
+      input,
+      textarea {
+        margin-bottom: 1em;
+      }
+
+      textarea {
+        height: 8em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form Autosave</h1>
+
+    <form class="save-me" id="save-me" novalidate>
+      <label for="name">Name</label>
+      <input data-save type="text" name="name" id="name" />
+
+      <label for="address">Address</label>
+      <input data-save type="text" name="address" id="address" />
+
+      <label for="email">Email</label>
+      <input data-save type="email" name="email" id="email" />
+
+      <label for="more">Additional thoughts?</label>
+      <textarea data-save name="more" id="more"></textarea>
+
+      <p>
+        <button type="submit">Submit</button>
+      </p>
+    </form>
+
+    <script>
+      var formIds = Array.from(document.querySelectorAll('[data-save]'));
+
+      var getData = function() {
+        console.log(formIds);
+        var myData = formIds.forEach(formId => {
+          localStorage.getItem(formId);
+        });
+        console.log(myData);
+      };
+
+      var handleSubmit = function() {
+        // Remove data
+        console.log(formIds);
+        formIds.forEach(formId => localStorage.removeItem(formId));
+      };
+
+      var clearStorage = function() {
+        // Remove data
+        formIds.forEach(formId => localStorage.removeItem(formId));
+      };
+
+      var handleChange = function() {
+        var input = {};
+        if (!event.target.matches('input, textarea')) return;
+        input = event.target.value;
+        console.log(input);
+        // Store data
+        localStorage.setItem(event.target.id, input);
+      };
+
+      document.addEventListener('input', handleChange);
+      document.addEventListener('submit', handleSubmit);
+      document.addEventListener('DOMContentLoaded', clearStorage);
+    </script>
+  </body>
+</html>
