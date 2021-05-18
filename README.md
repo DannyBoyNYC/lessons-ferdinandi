@@ -1,3 +1,3 @@
-# Notes
+# Ferdinandi Academy 2021
 
-https://w3bits.com/css-floating-labels/
+A repo to accompany the Vanilla JS Guy's spring 2021 academy.
