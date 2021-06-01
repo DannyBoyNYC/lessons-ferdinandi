@@ -1,33 +1,52 @@
-(function (window, document, undefined) {
-  "use strict";
+;(function (window, document, undefined) {
+  'use strict'
 
-  window.addEventListener("click", handleClicks);
-  window.addEventListener("input", handleInput);
+  window.addEventListener('click', handleClicks)
+  window.addEventListener('input', handleInput)
+  window.addEventListener('submit', handleSubmit)
 
-  const usernameField = document.querySelector("#username");
-  const passwordField = document.querySelector("#password");
-  const togglePasswordCheckbox = document.querySelector("#show-password");
-  const submitButton = document.querySelector("button");
+  const loginForm = document.querySelector('#login')
+  const usernameField = loginForm.querySelector('#username')
+  const passwordField = loginForm.querySelector('#password')
+  const togglePasswordCheckbox = loginForm.querySelector('#show-password')
+  const submitButton = loginForm.querySelector('button')
 
+  /**
+   * handler functions for all event listeners
+   */
   function handleClicks(e) {
-    if (e.target.id === "show-password") {
-      passwordField.type = togglePasswordCheckbox.checked ? "text" : "password";
+    if (e.target.id === 'show-password') {
+      passwordField.type = togglePasswordCheckbox.checked ? 'text' : 'password'
     }
   }
 
   function handleInput(e) {
-    if (e.target.id === "password") {
-      if (passwordField.value.length > 0) {
-        togglePasswordCheckbox.disabled = false;
-      } else {
-        togglePasswordCheckbox.disabled = true;
-      }
-    }
-
-    if (passwordField.value.length > 0 && usernameField.value.length > 0) {
-      submitButton.disabled = false;
-    } else {
-      submitButton.disabled = true;
-    }
+    e.target.id === 'password' && toggleDisablePasswordCheckbox()
+    toggleDisableSubmitButton()
   }
-})(window, document);
+
+  function handleSubmit(e) {
+    resetForm()
+    e.preventDefault()
+  }
+
+  /**
+   * functions called by handler functions
+   */
+  function toggleDisablePasswordCheckbox() {
+    togglePasswordCheckbox.disabled =
+      passwordField.value.length > 0 ? false : true
+  }
+
+  function toggleDisableSubmitButton() {
+    passwordField.value.length > 0 && usernameField.value.length > 0
+      ? (submitButton.disabled = false)
+      : (submitButton.disabled = true)
+  }
+
+  function resetForm() {
+    loginForm.reset()
+    submitButton.disabled = true
+    togglePasswordCheckbox.disabled = true
+  }
+})(window, document)
