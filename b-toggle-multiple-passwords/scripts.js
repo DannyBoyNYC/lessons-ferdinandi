@@ -3,10 +3,6 @@
   const passwordFields = loginForm.querySelectorAll('[type="password"]')
   const togglePasswordsCheckbox = loginForm.querySelector('#show-passwords')
 
-  document.addEventListener('change', handleChange)
-  document.addEventListener('input', handleInput)
-  document.addEventListener('submit', handleSubmit)
-
   function handleChange(e) {
     if (!e.target.matches('#show-passwords')) return
     for (let passwordField of passwordFields) {
@@ -35,4 +31,8 @@
         passwordField.value.length > 0 ? false : true
     }
   }
+
+  document.addEventListener('change', handleChange)
+  document.addEventListener('input', handleInput)
+  document.addEventListener('submit', handleSubmit)
 })(window, document)

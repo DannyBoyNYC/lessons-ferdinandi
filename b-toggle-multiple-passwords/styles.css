@@ -13,6 +13,14 @@ input:not([type='checkbox']) {
   font-size: inherit;
 }
 
+input:valid {
+  background-color: lightgreen;
+}
+
+input:invalid {
+  background-color: pink;
+}
+
 [type='checkbox'] {
   margin-bottom: 0;
   margin-right: 0.25em;

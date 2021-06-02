@@ -11,6 +11,7 @@
     <h1>Password Visibility - Multiple Fields</h1>
 
     <p>Enter your current password and new password below.</p>
+    <p style="color: pink">ONLY ENTER NUMBERS!!! No letters allowed!</p>
 
     <form id="login" validate autocomplete="off">
       <div>
@@ -19,13 +20,22 @@
           type="password"
           name="current-password"
           id="current-password"
+          pattern="[0-9]+"
+          title="Only numbers allowed"
           required
         />
       </div>
 
       <div>
         <label for="new-password">New Password</label>
-        <input type="password" name="new-password" id="new-password" required />
+        <input
+          type="password"
+          name="new-password"
+          id="new-password"
+          pattern="[0-9]+"
+          title="Only numbers allowed"
+          required
+        />
       </div>
 
       <div>
@@ -45,8 +55,32 @@
       </p>
     </form>
 
-    <script src="scripts.js"></script>
+    <p>
+      References:
+      <a href="https://daverupert.com/2017/11/happier-html5-forms/"
+        >Nice article on simple HTML5 form validation.</a
+      >
+      from
+      <a href="https://css-tricks.com/happier-html5-form-validation/"
+        >CSS Tricks</a
+      >
+    </p>
 
-    <script></script>
+    <p>
+      Preview:
+      <a
+        href="http://oit2.scps.nyu.edu/~devereld/ferdinandi-academy2021/b-toggle-multiple-passwords/"
+        >preview</a
+      >.
+    </p>
+    <p>
+      Code:
+      <a
+        href="https://github.com/DannyBoyNYC/ferdinandi-academy2021/blob/master/b-toggle-multiple-passwords/scripts.js"
+        >code</a
+      >.
+    </p>
+
+    <script src="scripts.js"></script>
   </body>
 </html>
