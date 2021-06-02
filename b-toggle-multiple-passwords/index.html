@@ -5,47 +5,37 @@
     <title>Password Visibility - Multiple Fields</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style type="text/css">
-      body {
-        margin: 0 auto;
-        max-width: 40em;
-        width: 88%;
-      }
-
-      label {
-        display: block;
-        width: 100%;
-      }
-
-      input {
-        margin-bottom: 1em;
-      }
-
-      [type='checkbox'] {
-        margin-bottom: 0;
-        margin-right: 0.25em;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Password Visibility - Multiple Fields</h1>
 
     <p>Enter your current password and new password below.</p>
 
-    <form id="login">
+    <form id="login" validate autocomplete="off">
       <div>
         <label for="current-password">Current Password</label>
-        <input type="password" name="current-password" id="current-password" />
+        <input
+          type="password"
+          name="current-password"
+          id="current-password"
+          required
+        />
       </div>
 
       <div>
         <label for="new-password">New Password</label>
-        <input type="password" name="new-password" id="new-password" />
+        <input type="password" name="new-password" id="new-password" required />
       </div>
 
       <div>
         <label for="show-passwords">
-          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          <input
+            type="checkbox"
+            name="show-passwords"
+            id="show-passwords"
+            disabled
+          />
           Show passwords
         </label>
       </div>
@@ -55,26 +45,8 @@
       </p>
     </form>
 
-    <script>
-      const loginForm = document.querySelector('#login')
-      const passwordFields = loginForm.querySelectorAll('[type="password"]')
-      const togglePasswordsCheckbox = loginForm.querySelector('#show-passwords')
+    <script src="scripts.js"></script>
 
-      let toggled = false
-
-      window.addEventListener('change', handleChange)
-
-      function handleChange() {
-        if (togglePasswordsCheckbox.checked) {
-          for (let passwordField of passwordFields) {
-            passwordField.type = 'text'
-          }
-        } else {
-          for (let passwordField of passwordFields) {
-            passwordField.type = 'password'
-          }
-        }
-      }
-    </script>
+    <script></script>
   </body>
 </html>

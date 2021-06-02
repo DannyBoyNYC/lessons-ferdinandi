@@ -1,11 +1,11 @@
-@import url("../_base.css");
+@import url('../_base.css');
 
 label {
   display: block;
   width: 100%;
 }
 
-input:not([type="checkbox"]) {
+input:not([type='checkbox']) {
   margin-bottom: 1em;
   padding: 0.5rem;
   min-width: 400px;
@@ -13,7 +13,7 @@ input:not([type="checkbox"]) {
   font-size: inherit;
 }
 
-[type="checkbox"] {
+[type='checkbox'] {
   margin-bottom: 0;
   margin-right: 0.25em;
 }
@@ -27,10 +27,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   padding: 1rem;
 }
 
-input[type="checkbox"]:disabled {
+input[type='checkbox']:disabled {
   cursor: not-allowed;
 }
