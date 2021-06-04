@@ -3,6 +3,9 @@
   const passwordFields = loginForm.querySelectorAll('[type="password"]')
   const togglePasswordsCheckbox = loginForm.querySelector('#show-passwords')
 
+  const [button1, button2] = document.querySelectorAll('[type="password"]')
+  console.log('desructured:::', button1, button2)
+
   function handleChange(e) {
     if (!e.target.matches('#show-passwords')) return
     for (let passwordField of passwordFields) {
