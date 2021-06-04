@@ -1,8 +1,26 @@
 @import url('../_base.css');
 
+div {
+  padding: 4px;
+}
+
+form {
+  margin-bottom: 2rem;
+}
+
+select {
+  padding: 2px;
+}
+
 label {
   display: block;
   width: 100%;
+  margin: 8px 0;
+}
+
+label span {
+  font-size: smaller;
+  color: pink;
 }
 
 input:not([type='checkbox']) {
@@ -11,6 +29,20 @@ input:not([type='checkbox']) {
   min-width: 400px;
   margin: 0.5rem 0;
   font-size: inherit;
+}
+
+input.error,
+select.error {
+  outline: none;
+  border: 2px solid red;
+  background-color: pink;
+}
+
+input.error:valid,
+select.error:valid {
+  border-style: auto;
+  border-color: inherit;
+  background-color: white;
 }
 
 /* input:valid {

@@ -11,59 +11,109 @@
 
     <h2>Change Username</h2>
 
-    <p>Enter your username and password to change your username.</p>
+    <form validate autocomplete="off">
+      <fieldset>
+        <legend>
+          Enter your username and password
+        </legend>
+        <div>
+          <label for="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            title="Please enter an email address"
+          />
+        </div>
 
-    <form>
-      <div>
-        <label for="username">Username</label>
-        <input type="text" name="username" id="username" />
-      </div>
+        <div>
+          <label for="emailType">Type</label>
+          <select name="emailType" id="emailType" required>
+            <option value="">Select option</option>
+            <option value="1">Company</option>
+            <option value="2">Individual</option>
+          </select>
+        </div>
 
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" value="pass" />
-      </div>
+        <div>
+          <label for="password"
+            >Password
+            <span
+              >(Numbers only)</span
+            ></label
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            required
+            pattern="[0-9]+"
+            title="Only numbers allowed"
+          />
+        </div>
 
-      <div>
-        <label for="show-password">
-          <input type="checkbox" name="show-password" id="show-password" />
-          Show password
-        </label>
-      </div>
+        <div>
+          <label for="show-password">
+            <input
+              type="checkbox"
+              name="show-password"
+              id="show-password"
+              data-password="#password"
+            />
+            Show password
+          </label>
+        </div>
 
-      <p>
-        <button type="submit">Change Username</button>
-      </p>
+        <p>
+          <button type="submit">Change Username</button>
+        </p>
+      </fieldset>
     </form>
 
     <h2>Change Password</h2>
 
-    <p>Enter your current password and new password below.</p>
-
-    <form>
+    <form validate autocomplete="off">
+      <fieldset>
+        <legend>
+          Enter your current password and new password
+        </legend>
       <div>
-        <label for="current-password">Current Password</label>
+        <label for="current-password">Current Password <span
+          >(Numbers only)</span
+        ></label>
         <input
           type="password"
           name="current-password"
           id="current-password"
-          value="pass"
+          required
+          pattern="[0-9]+"
+          title="Only numbers allowed"
         />
       </div>
 
       <div>
-        <label for="new-password">New Password</label>
+        <label for="new-password">New Password <span
+          >(Numbers only)</span
+        ></label>
         <input
           type="password"
           name="new-password"
           id="new-password"
-          value="new pass"
+          required
+          pattern="[0-9]+"
+          title="Only numbers allowed"
         />
       </div>
 
       <div>
         <label for="show-passwords">
-          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          <input
+            type="checkbox"
+            name="show-passwords"
+            id="show-passwords"
+            data-password="#current-password, #new-password"
+          />
           Show passwords
         </label>
       </div>
@@ -72,6 +122,16 @@
         <button type="submit">Change Passwords</button>
       </p>
     </form>
+
+    <h3>Notes</h3>
+
+    <p>
+      MDN on
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/checkValidity"
+        >checkValidity</a
+      >
+    </p>
 
     <script src="scripts.js"></script>
   </body>
