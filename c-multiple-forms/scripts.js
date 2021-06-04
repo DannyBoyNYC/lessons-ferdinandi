@@ -1,4 +1,3 @@
-const forms = document.querySelectorAll('form')
 const inputs = document.querySelectorAll('input, select, textarea')
 
 function togglePasswords(event) {
