@@ -15,12 +15,9 @@ function showCharacterCount(event) {
 }
 
 function showWordCount() {
-  console.log(' textInput.innerText ', textInput.value)
-
   let numWords = textInput.value
     .split(/[\n\r\s]+/g)
     .filter((word) => word.length > 0)
-
   wordCount.innerText = numWords.length
 }
 
