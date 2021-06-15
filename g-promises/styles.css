@@ -1,0 +1,62 @@
+@import url('../_base.css');
+
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+  font-size: 1.25rem;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+textarea {
+  min-height: 24em;
+  width: 100%;
+}
+
+button {
+  padding: 0.5rem;
+  font-size: inherit;
+}
+
+blockquote {
+  margin: 0;
+  font-size: 2rem;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.5;
+  quotes: '\201C''\201D''\2018''\2019';
+  height: 40%;
+  overflow: auto;
+}
+
+blockquote:before {
+  content: open-quote;
+}
+
+blockquote:after {
+  content: close-quote;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collected {
+  position: absolute;
+  bottom: 0;
+  max-height: 60%;
+  overflow: auto;
+  margin: 3rem 0;
+  max-width: 40em;
+}
+@media (max-width: 480px) {
+  .collected {
+    display: none;
+  }
+}
