@@ -1,7 +1,7 @@
 const API = `https://ron-swanson-quotes.herokuapp.com/v2/quotes`
 const btn = document.querySelector('#get-quote')
 const blockQuote = document.querySelector('blockquote')
-const collectedWisdon = document.querySelector('#collected-wisdom')
+const collectedWisdom = document.querySelector('#collected-wisdom')
 
 var ronsWisdom = []
 
@@ -18,7 +18,7 @@ function getQuote() {
     .then(function (data) {
       ronsWisdom.push(data[0])
       blockQuote.innerText = ronsWisdom[ronsWisdom.length - 1]
-      collectedWisdon.innerHTML = ronsWisdom
+      collectedWisdom.innerHTML = ronsWisdom
         .map((wise) => `<p>${wise}</p>`)
         .join('')
     })
