@@ -6,13 +6,17 @@ let ronsWisdom = []
 let numberOfQuotes = 0
 let maxNumberOfQuotes = 50
 
-function checkAndSet(data) {
+function checkForDupesAndDisplay(data) {
+  console.log(ronsWisdom.length)
   numberOfQuotes++
   if (ronsWisdom.includes(data[0]) && numberOfQuotes <= maxNumberOfQuotes) {
     console.log(' dupe detected ', data[0])
     getQuote()
   } else {
     ronsWisdom.push(data[0])
+    if (ronsWisdom.length > maxNumberOfQuotes) {
+      ronsWisdom.shift()
+    }
     return (quote.textContent = ronsWisdom[ronsWisdom.length - 1])
   }
 }
@@ -26,7 +30,7 @@ function getQuote() {
       }
       throw response.status
     })
-    .then(checkAndSet)
+    .then(checkForDupesAndDisplay)
     .catch(function (error) {
       quote.textContent =
         '[Something went wrong, sorry!] I have a joke for you... The government in this town is excellent, and uses your tax dollars efficiently.'
