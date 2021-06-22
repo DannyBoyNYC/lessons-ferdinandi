@@ -31,7 +31,7 @@ function createArticleCards(articles) {
           <h3>${article.author}</h3>
           <date>${article.pubdate}</date>
           <p>${article.article}</p>
-          <a href="#">back</a>
+          <a href="#">close</a>
         </article>`
     )
     .join(' ')
