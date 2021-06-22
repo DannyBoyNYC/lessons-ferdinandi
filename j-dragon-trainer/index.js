@@ -35,6 +35,6 @@ function createArticleCards(articles) {
         </article>`
     )
     .join(' ')
-  app.innerHTML += cards
+  app.innerHTML += `<main>${cards}</main>`
 }
 getArticles()
