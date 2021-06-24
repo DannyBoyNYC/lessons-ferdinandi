@@ -48,7 +48,6 @@ function createArticleCards(articles, authors) {
 
 function getAuthorBio(currAuthor, authors) {
   const val = authors.find((author) => currAuthor === author.author)
-  console.log('  ', val.bio)
   return val.bio
 }
 
