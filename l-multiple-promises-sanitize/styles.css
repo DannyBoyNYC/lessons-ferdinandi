@@ -1,0 +1,58 @@
+@import url('../_base.css');
+
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+main {
+  position: relative;
+}
+
+article:target {
+  opacity: 1;
+}
+
+article {
+  position: absolute;
+  top: 0;
+  margin: 24px 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+article > * {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #bada55;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+date {
+  font-size: 1rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+date + p {
+  font-size: 1.15rem;
+  margin: 12px 0;
+}
+
+p + p {
+  font-style: italic;
+  font-size: 1rem;
+}

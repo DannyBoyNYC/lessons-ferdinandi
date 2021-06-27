@@ -12,7 +12,6 @@ async function getArticles() {
     .then((responses) =>
       Promise.all(responses.map((response) => response.json()))
     )
-    // .then((data) => console.log('0,1', data[0], data[1]))
     .then((data) => createTOC(data[0].articles, data[1].authors))
     .catch((error) => {
       console.warn(error)
@@ -21,7 +20,6 @@ async function getArticles() {
 }
 
 function createTOC(articles, authors) {
-  console.log(articles, authors)
   const titles = articles
     .map((article) => `<li><a href="${article.url}">${article.title}</a></li>`)
     .join(' ')
@@ -47,8 +45,8 @@ function createArticleCards(articles, authors) {
 }
 
 function getAuthorBio(currAuthor, authors) {
-  const val = authors.find((author) => currAuthor === author.author)
-  return val.bio
+  const currAuthor = authors.find((author) => currAuthor === author.author)
+  return currAuthor.bio
 }
 
 getArticles()
