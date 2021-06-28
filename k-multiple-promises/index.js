@@ -9,22 +9,13 @@ function renderFail() {
 
 async function getArticles() {
   Promise.all([fetch(storiesAPI), fetch(authorAPI)])
-    .then((responses) =>
-      Promise.all(responses.map((response) => response.json()))
+    .then((responses) => Promise.all(responses.map((response) => response.json())),
     )
     .then((data) => createTOC(data[0].articles, data[1].authors))
     .catch((error) => {
-      console.warn(error)
-      renderFail()
-    })
-}
-
-function createTOC(articles, authors) {
-  const titles = articles
-    .map((article) => `<li><a href="${article.url}">${article.title}</a></li>`)
-    .join(' ')
-  app.innerHTML = `<ul>${titles}</ul>`
-  createArticleCards(articles, authors)
+      console.warn(error);
+      renderFail();
+    });
 }
 
 function createArticleCards(articles, authors) {
@@ -40,13 +31,21 @@ function createArticleCards(articles, authors) {
           <p>${getAuthorBio(article.author, authors)}</p>
         </article>`
     )
-    .join(' ')
-  app.innerHTML += `<main>${cards}</main>`
+    .join(' ');
+  app.innerHTML += `<main>${cards}</main>`;
+}
+
+function createTOC(articles, authors) {
+  const titles = articles
+    .map((article) => `<li><a href="${article.url}">${article.title}</a></li>`)
+    .join(' ');
+  app.innerHTML = `<ul>${titles}</ul>`;
+  createArticleCards(articles, authors);
 }
 
 function getAuthorBio(currAuthor, authors) {
-  const currAuthor = authors.find((author) => currAuthor === author.author)
-  return currAuthor.bio
+  const currentAuthor = authors.find((author) => currAuthor === author.author);
+  return currentAuthor.bio;
 }
 
-getArticles()
+getArticles();
