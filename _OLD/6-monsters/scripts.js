@@ -6,7 +6,7 @@ var monsters = [
 ];
 
 var audioBg = document.querySelector('.audio-bg');
-var audio = document.querySelector(`.audio-lose`);
+var audio = document.querySelector('.audio-lose');
 
 var correctAnswers = 0;
 var correctAnswersElem = document.querySelector('.correct-answers');
@@ -41,37 +41,37 @@ var prepMonsters = function () {
     for (var i =0; i<monsterMash.length; i++){
         var monster = document.createElement('div');
         monster.classList.add('grid');
-        if (monsterMash[i].lastIndexOf(".svg") !== -1){
+        if (monsterMash[i].lastIndexOf('.svg') !== -1){
             monster.classList.add(monsterMash[i].replace('.svg', ''));
         } else {
-            monster.classList.add('sock')
+            monster.classList.add('sock');
         }
-        row.appendChild(monster) 
+        row.appendChild(monster);
     }
-}
+};
 
 var playAgain = function () {
     var playBtn = document.createElement('button');
     playBtn.setAttribute('class', 'btn');
     playBtn.innerHTML = 'Play Again?';
-    playBtn.addEventListener('click', reload, false)
-    document.querySelector('.boom').append(playBtn)
-}
+    playBtn.addEventListener('click', reload, false);
+    document.querySelector('.boom').append(playBtn);
+};
 
 var reload = function () {
     window.location.reload();
-}
+};
 
 var winner = function () {
-    correctAnswersElem.innerText = `You're a WINNER!`;
+    correctAnswersElem.innerText = 'You\'re a WINNER!';
     correctAnswersElem.classList.add('boom');
     rootElem.textContent = '';
     playAgain();
-}
+};
 
 
 var clickListeners = function (e) {
-    if (!event.target.closest('.row')) { return }
+    if (!e.target.closest('.row')) return;
     document.querySelector('h1 + p').innerText = '';
     var classes = Array.from(e.target.classList);
     if (classes[1].includes('monster')) {
@@ -84,7 +84,7 @@ var clickListeners = function (e) {
         }
         
     } else if (classes[1].includes('sock')) {
-        correctAnswersElem.innerText = `You're a LOSER BABY!`;
+        correctAnswersElem.innerText = 'You\'re a LOSER BABY!';
         correctAnswersElem.classList.add('boom');
         rootElem.textContent = '';
         audioBg.pause();
@@ -92,11 +92,11 @@ var clickListeners = function (e) {
         audio.play();
         playAgain();
     }
-}
+};
 
 // event listeners and inits
-prepMonsters()
-document.addEventListener('click', clickListeners, false)
+prepMonsters();
+document.addEventListener('click', clickListeners, false);
 
 // scratchpad
 // var image = document.createElement('img');

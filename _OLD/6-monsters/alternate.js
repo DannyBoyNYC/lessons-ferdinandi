@@ -64,7 +64,7 @@ var loadGame = function() {
 		var monsterImage = '<img class="monster-img" src="images/' + shuffledMonsters[i] + '" hidden>';
     appContent.innerHTML += '<div class="grid"><img class="door-img" src="images/door.svg">' + monsterImage + '</div>';
   }
-}
+};
 
 // Playing the game
 var playGame = function(event) {
@@ -103,7 +103,7 @@ var playGame = function(event) {
 			}
 		}, 500);
 	}
-}
+};
 
 // Add event listener for window load -> Load game
 window.addEventListener('load', loadGame, false);
