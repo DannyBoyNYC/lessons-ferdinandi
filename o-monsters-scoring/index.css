@@ -1,0 +1,56 @@
+@import url('../_base.css');
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+}
+
+/**
+ * A simple grid layout
+ */
+.row {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+.grid {
+  min-height: 6em;
+  padding: 1em;
+}
+
+/**
+ * Make sure images scale
+ */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+aside {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.playButton {
+  padding: 0.5rem;
+  color: white;
+  background-color: #007eb6;
+  border: 0;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+}
