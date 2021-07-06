@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Notebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Notebook</h1>
+
+    <form id="notebook">
+      <label for="note">Your note</label>
+      <textarea id="note"></textarea>
+
+      <div class="btnContainer">
+        <button class="saveBtn">Save Your Note</button
+        ><button class="deleteBtn">Delete Your Note</button>
+      </div>
+    </form>
+
+    <script>
+      let noteForm = document.querySelector('#notebook');
+      let saveBtn = document.querySelector('.saveBtn');
+      let deleteBtn = document.querySelector('.deleteBtn');
+      let txt = document.querySelector('#note');
+
+      function handleClicks(event) {
+        event.preventDefault();
+        if (event.target.matches('.saveBtn')) {
+          let data = txt.value;
+          localStorage.setItem('myNote', data);
+          showStatus('saved');
+          validate();
+        }
+        if (event.target.matches('.deleteBtn')) {
+          localStorage.removeItem('myNote');
+          txt.value = '';
+          showStatus('deleted');
+          validate();
+        }
+      }
+
+      function loadNote() {
+        validate();
+        let note = localStorage.getItem('myNote');
+        txt.value = note;
+      }
+
+      function validate(event) {
+        if (!localStorage.getItem('myNote')) {
+          saveBtn.disabled = true;
+          deleteBtn.disabled = true;
+        } else {
+          saveBtn.disabled = false;
+          deleteBtn.disabled = false;
+        }
+        if (txt.value.length > 1) {
+          saveBtn.disabled = false;
+        }
+      }
+
+      function showStatus(action) {
+        let notification = document.createElement('div');
+        notification.setAttribute('aria-live', 'polite');
+        notification.classList.add('toast');
+
+        noteForm.append(notification);
+
+        setTimeout(function () {
+          notification.classList.add('visible');
+          if (action === 'saved') {
+            notification.textContent = 'Your note was saved!';
+          }
+          if (action === 'deleted') {
+            notification.textContent = 'Your note was deleted!';
+          }
+        }, 1);
+
+        setTimeout(function () {
+          notification.classList.remove('visible');
+          notification.remove();
+        }, 4000);
+      }
+
+      noteForm.addEventListener('click', handleClicks);
+      txt.addEventListener('keyup', validate);
+      window.addEventListener('load', loadNote);
+    </script>
+  </body>
+</html>
