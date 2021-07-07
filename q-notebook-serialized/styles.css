@@ -1,0 +1,61 @@
+@import url('../_base.css');
+
+body {
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+  font-size: 1.25em;
+}
+
+label,
+textarea {
+  display: block;
+  width: 100%;
+}
+
+label {
+  margin: 0.75em 0;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font: inherit;
+  border-radius: 6px;
+}
+
+textarea {
+  min-height: 400px;
+}
+
+button {
+  font: inherit;
+  padding: 0.75rem;
+  background-color: #007eb6;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.toast {
+  padding: 1rem;
+  background-color: brown;
+  transform: translateX(100vw);
+}
+
+.toast.visible {
+  transform: translateX(0);
+  transition: all 0.5s;
+}
