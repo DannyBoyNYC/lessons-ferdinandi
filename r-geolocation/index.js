@@ -8,14 +8,14 @@ const DEV_MODE = true;
 async function getWeather(lon, lat) {
   try {
     const savedWeather = await sessionStorage.getItem('weatherBitSaved');
-    if (savedWeather && DEV_MODE) {
-      console.log(' getting weather from storage ');
-      displayWeather(JSON.parse(savedWeather));
-    } else {
-      console.log(' getting weather from API ');
-      let response = await fetch(
-        `${weatherBitBaseURL}?lat=${lat}&lon=${lon}&key=${weatherBitKEY}`,
-      );
+      if (savedWeather && DEV_MODE) {
+        console.log(' getting weather from storage ');
+        displayWeather(JSON.parse(savedWeather));
+      } else {
+        console.log(' getting weather from API ');
+        let response = await fetch(
+          `${weatherBitBaseURL}?lat=${lat}&lon=${lon}&key=${weatherBitKEY}`,
+        );
       if (!response.ok) {
         throw 'Response failed. Status: ' + response.status;
       }
