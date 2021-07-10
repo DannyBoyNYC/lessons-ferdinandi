@@ -1,4 +1,4 @@
-// import {sanitizeHTML} from '../modules/sanitize.js';
+import {serialize} from '/modules/serialize.js';
 
 let titleInput = document.getElementById('title');
 let txtArea = document.getElementById('note');
@@ -9,13 +9,12 @@ let deleteBtn = document.getElementById('deleteBtn');
 
 function handleSubmit(event) {
   event.preventDefault();
-    let formData = new FormData(noteForm);
-    let noteObj = {};
-    for (let [key, value] of formData) {
-      noteObj[key] = value;
-    }
-    // let noteId = Date.now();
-    localStorage.setItem('myNote', JSON.stringify(noteObj));
+    let formData = serialize(new FormData(noteForm));
+    // let noteObj = {};
+    // for (let [key, value] of formData) {
+    //   noteObj[key] = value;
+    // }
+    localStorage.setItem('myNote', JSON.stringify(formData));
     showStatus('saved');
     validate();
 }
@@ -32,11 +31,19 @@ function handleClicks(event){
 
 function loadNote() {
   validate();
-  let currNote = localStorage.getItem('myNote');
+  let currNote = JSON.parse(localStorage.getItem('myNote'));
   if(!currNote) return;
-  let parsedNote = JSON.parse(currNote);
-  titleInput.value = parsedNote.noteTitle;
-  txtArea.value = parsedNote.noteContent;
+  let fields = noteForm.elements;
+  // let parsedNote = JSON.parse(currNote);
+  for (let field of fields) {
+    // If there's no saved data, skip it
+    if (!currNote[field.name]) continue;
+
+    // Set the field value to the saved data in localStorage
+    field.value = currNote[field.name];
+  }
+  // titleInput.value = parsedNote.noteTitle;
+  // txtArea.value = parsedNote.noteContent;
 }
 
 function validate() {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Notebook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Notebook</h1>
+
+    <form id="notebook">
+      <label for="title">Note Title</label>
+      <input type="text" id="title" name="noteTitle" required />
+
+      <label for="note">Note</label>
+      <textarea id="note" name="noteContent" required></textarea>
+
+      <div class="btnContainer">
+        <button id="saveBtn">Save Your Note</button>
+        <button id="deleteBtn">Delete Your Note</button>
+      </div>
+    </form>
+
+    <script src="index.js" type="module"></script>
+  </body>
+</html>

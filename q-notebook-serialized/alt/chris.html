@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Notebook - Multiple Fields</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style type="text/css">
+      body {
+        margin: 0 auto;
+        max-width: 40em;
+        width: 88%;
+      }
+
+      label,
+      textarea,
+      input {
+        display: block;
+        width: 100%;
+      }
+
+      label {
+        margin-bottom: 0.5em;
+      }
+
+      input,
+      textarea {
+        margin-bottom: 1em;
+      }
+
+      textarea {
+        min-height: 50vh;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Notebook - Multiple Fields</h1>
+
+    <form id="notebook">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" />
+
+      <label for="note">Your note</label>
+      <textarea id="note" name="note"></textarea>
+
+      <p><button>Save Your Note</button></p>
+    </form>
+
+    <script>
+      // Get the notebook
+      let notebook = document.querySelector('#notebook');
+
+      /**
+       * Serialize all form data into an object
+       * @param  {FormData} data The FormData object to serialize
+       * @return {String}        The serialized form data
+       */
+      function serialize(data) {
+        let obj = {};
+        for (let [key, value] of data) {
+          if (obj[key] !== undefined) {
+            if (!Array.isArray(obj[key])) {
+              obj[key] = [obj[key]];
+            }
+            obj[key].push(value);
+          } else {
+            obj[key] = value;
+          }
+        }
+        return obj;
+      }
+
+      /**
+       * Load note from localStorage
+       */
+      function loadNote() {
+        // Get saved data
+        let saved = JSON.parse(localStorage.getItem('notes'));
+        if (!saved) return;
+
+        // Get form elements
+        let fields = notebook.elements;
+
+        // Loop through each one and load data
+        for (let field of fields) {
+          // If there's no saved data, skip it
+          if (!saved[field.name]) continue;
+
+          // Set the field value to the saved data in localStorage
+          field.value = saved[field.name];
+        }
+      }
+
+      /**
+       * Show a "note saved" status message
+       */
+      function showStatus() {
+        // Create a notification
+        let notification = document.createElement('div');
+        notification.setAttribute('aria-live', 'polite');
+
+        // Inject it into the DOM
+        notebook.append(notification);
+
+        // Add text after it's in the UI
+        setTimeout(function () {
+          notification.textContent = 'Your note was saved.';
+        }, 1);
+
+        // Clear it after 3 seconds
+        setTimeout(function () {
+          notification.remove();
+        }, 3000);
+      }
+
+      /**
+       * Save note to localStorage
+       * @param {Event} event The event object
+       */
+      function saveNote(event) {
+        // Stop the form from reloading the page
+        event.preventDefault();
+
+        // Save the note
+        let notes = serialize(new FormData(notebook));
+        localStorage.setItem('notes', JSON.stringify(notes));
+
+        // Display a "form saved" message
+        showStatus();
+      }
+
+      // Load saved note from localStorage
+      loadNote();
+
+      // Save the note
+      notebook.addEventListener('submit', saveNote);
+    </script>
+  </body>
+</html>
